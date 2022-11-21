@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 #!/usr/bin/python3
-=======
-<<<<<<< HEAD
->>>>>>> 20e20696e0117667c8f1e0054b01b90882641e05
 import cmd
 
 class HBNBCommand(cmd.Cmd):
@@ -29,24 +25,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-<<<<<<< HEAD
-=======
-=======
-#!/usr/bin/python3
-import cmd
-
-class BaseModel(cmd.Cmd):
-    prompt = "(hbnb) "
-
-    def do_EOF(self, line):
-        """Help command"""
-        pass
-
-    def do_quit(self, line):
-        """Quit command"""
-        return True
-
-if __name__ == '__main__':
-    BaseModel().cmdloop()
->>>>>>> 76bd7d7 (Authors)
->>>>>>> 20e20696e0117667c8f1e0054b01b90882641e05

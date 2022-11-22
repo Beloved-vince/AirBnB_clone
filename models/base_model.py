@@ -1,17 +1,31 @@
 #!/usr/bin/python3
 from uuid import uuid4
 from datetime import datetime
+"""
+BaseModel class is created to generate a dictionary representation\
+        of an instance
+On this class other classes will inherit from
+"""
+
+format_dt = "%Y-%m-%dT%H:%M:%S.%f"
 
 class BaseModel():
-    id = uuid4()
 
-    def __init__(self, int=None):
-        self.my_number = int
-        self.name = str
-        self.updated_at = datetime.now()
-        self.id = self.id
-        self.created_at = datetime.now()
-
+    def __init__(self, *args, **kwargs):
+        """Args:
+                *args: Constructor of BaseModel set to "None"
+                **kwargs: Constructor of BaseModel
+        if **kwargs is not empty operation can be perform
+        """
+        if kwargs is not None:
+            for key, item in kwargs.items():
+                if key in ['created_at', 'updated_at']:
+                    item = datetime.strptime(item, format_dt)
+                if key not in ['__class__']:
+                    setattr(self, key, item)
+                
+        self.id = str(uuid4())
+        self.created_at = self.updated_at = datetime.now()
     def __str__(self):
         """
         Return the following objects
@@ -51,17 +65,3 @@ class BaseModel():
         dic['__class__'] = self.__class__.__name__
 
         return dic
-    
-if __name__ == "__main__":
-    my_model = BaseModel()
-    my_model.name = "My_First_Model"
-    my_model.my_number = 89
-    print(my_model.id)
-    print(my_model)
-    print(type(my_model.created_at))
-    print("--")
-    my_model_json = my_model.to_dict()
-    print(my_model_json)
-    print("JSON of my_model:")
-    for key in my_model_json.keys():
-        print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))

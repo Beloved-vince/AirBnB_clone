@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from uuid import uuid4
 from datetime import datetime
+import models
 """
 BaseModel class is created to generate a dictionary representation\
         of an instance
@@ -17,15 +18,18 @@ class BaseModel():
                 **kwargs: Constructor of BaseModel
         if **kwargs is not empty operation can be perform
         """
+        if args:
+            pass
         if kwargs is not None:
             for key, item in kwargs.items():
                 if key in ['created_at', 'updated_at']:
                     item = datetime.strptime(item, format_dt)
                 if key not in ['__class__']:
                     setattr(self, key, item)
-                
-        self.id = str(uuid4())
-        self.created_at = self.updated_at = datetime.now()
+            self.id = str(uuid4())
+            self.created_at = self.updated_at = datetime.now()
+            models.storage.new(self)
+
     def __str__(self):
         """
         Return the following objects
@@ -48,6 +52,7 @@ class BaseModel():
         """
 
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """

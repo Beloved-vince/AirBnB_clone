@@ -66,7 +66,7 @@ class FileStorage():
                 new_obj = load(f)
 
                 for key, val in new_obj.items():
-                    obj = self.class_dict[val["__class__"]](**val)
+                   new_obj = self.class_dict[val["__class__"]](**val)
                     self.__objects[key] = obj
 
         except FileNotFoundError:

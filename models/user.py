@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """This module contains the user class"""
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 from models import storage
 
 class User(BaseModel):

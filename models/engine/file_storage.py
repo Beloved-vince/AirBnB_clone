@@ -64,8 +64,12 @@ class FileStorage():
                 dic_obj = load(fil)
                 for key, value in dic_obj.items():
                     class_nam = key.split(".")[0]
+                    FileStorage.__objects[key] = eval(class_nam)(**value)
+                    
                     if class_nam in name_class:
                         FileStorage.__objects[key] = eval(class_nam)(**value)
                     else:
                         pass
-
+        else:
+            pass
+        

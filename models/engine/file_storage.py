@@ -8,8 +8,13 @@ All object will be passed to json format in a dictionary \
 """
 from os.path import exists
 from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.user import User
+from models.state import State
+from models.place import Place
+from models.review import Review
 from json import dump, dumps, load
-
 
 class FileStorage():
     """
@@ -22,6 +27,11 @@ class FileStorage():
 
     __file_path = 'file.json'
     __objects = {}
+
+     class_dict = {
+        "BaseModel": BaseModel, "City": City, "Place": Place, "Review": Review,
+        "State": State, "User": User, "Amenity": Amenity
+    }
 
     def all(self):
         """
@@ -56,16 +66,13 @@ class FileStorage():
                 (only if the JSON file (__file_path) exists ; \
                 otherwise, do nothing. If the file doesn’t exist, no exception should be raised)
         """
-        
-        dic_obj = {}
-        FileStorage.__objects = {}
-        if (exists(FileStorage.__file_path)):
-            with open(FileStorage.__file_path, "r") as fil:
-                dic_obj = load(fil)
-                for key, value in dic_obj.items():
-                    class_nam = key.split(".")[0]
-                    if class_nam in name_class:
-                        FileStorage.__objects[key] = eval(class_nam)(**value)
-                    else:
-                        pass
+        try:
+            with open(self.__file_path, 'r') as f:
+                new_obj = json.load(f)
 
+                for key, val in new_obj.items():
+                    obj = self.class_dict[val["__class__"]](**val)
+                    self.__objects[key] = obj
+
+        except FileNotFoundError:
+            pass

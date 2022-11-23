@@ -12,8 +12,6 @@ from models.amenity import Amenity
 from models.city import City
 from models.user import User
 from models.state import State
-from models.place import Place
-from models.review import Review
 from json import dump, dumps, load
 
 class FileStorage():
@@ -28,10 +26,7 @@ class FileStorage():
     __file_path = 'file.json'
     __objects = {}
 
-     class_dict = {
-        "BaseModel": BaseModel, "City": City, "Place": Place, "Review": Review,
-        "State": State, "User": User, "Amenity": Amenity
-    }
+    class_dict = { "BaseModel": BaseModel, "City": City, "State": State, "User": User, "Amenity": Amenity}
 
     def all(self):
         """
@@ -68,7 +63,7 @@ class FileStorage():
         """
         try:
             with open(self.__file_path, 'r') as f:
-                new_obj = json.load(f)
+                new_obj = load(f)
 
                 for key, val in new_obj.items():
                     obj = self.class_dict[val["__class__"]](**val)

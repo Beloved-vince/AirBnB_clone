@@ -2,7 +2,7 @@
 """Class Place"""
 from models.base_model import BaseModel
 
-class place(BaseModel):
+class Place(BaseModel):
     """Place class"""
     city_id = ""
     user_id = ""

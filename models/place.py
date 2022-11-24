@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""Place class"""
+"""Class Place"""
 from models.base_model import BaseModel
-
 
 class place(BaseModel):
     """Place class"""

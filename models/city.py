@@ -12,7 +12,6 @@ class City(BaseModel):
     """
     state_id = ""
     name = ""
-
     def __init__(self, *args, **kwargs):
         """This is the init method"""
         super().__init__(*args, **kwargs)

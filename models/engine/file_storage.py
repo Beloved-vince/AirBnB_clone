@@ -61,20 +61,6 @@ class FileStorage():
                 (only if the JSON file (__file_path) exists ; \
                 otherwise, do nothing. If the file doesn’t exist, no exception should be raised)
         """
-        
-        dic_obj = {}
-        FileStorage.__objects = {}
-        if (exists(FileStorage.__file_path)):
-            with open(FileStorage.__file_path, "r") as fil:
-                dic_obj = load(fil)
-                for key, value in dic_obj.items():
-                    class_nam = key.split(".")[0]
-                    FileStorage.__objects[key] = eval(class_nam)(**value)
-                    
-                    if class_nam in name_class:
-                        FileStorage.__objects[key] = eval(class_nam)(**value)
-                    else:
-                        pass
         try:
             with open(self.__file_path, 'r') as f:
                 new_obj = load(f)

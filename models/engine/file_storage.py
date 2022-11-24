@@ -70,6 +70,3 @@ class FileStorage():
                         FileStorage.__objects[key] = eval(class_nam)(**value)
                     else:
                         pass
-        else:
-            pass
-        

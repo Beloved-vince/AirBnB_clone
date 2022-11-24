@@ -1,13 +1,6 @@
 #!/usr/bin/python3
 """Write a program called console.py that contains the entry point of the command interpreter"""
 import cmd
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.amenity import Amenity
 from models import storage
 
 
@@ -48,15 +41,18 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id"""
-        if not arg:
-            print("** class name missing **")
-        elif arg not in self.classes:
-            print("** class doesn't exist **")
-        else:
-            new_instance = eval(arg)()
-            new_instance.save()
-            print(new_instance.id)
+        """ Create a new instance """
+        if len(arg) == 0:
+            print('** class name missing **')
+            return
+        new = None
+        if arg:
+            arg = arg.split()
+            if arg[0] not in self.classes:
+                print("** class doesn't exist **")
+            else:
+                print("** instance id missing **")
+                
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
@@ -110,6 +106,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     setattr(storage.all()[key], arg[2], arg[3])
                     storage.all()[key].save()
+                    print(storage.all()[key])
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

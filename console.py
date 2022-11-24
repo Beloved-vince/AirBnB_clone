@@ -19,7 +19,19 @@ class HBNBCommand(cmd.Cmd):
         return True
   
 
+<<<<<<< HEAD
     def do_show(self, arg):
+=======
+    def do_create(self, line):
+        """Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id"""
+        if not line:
+            print("** class name missing **")
+            return
+        if line != "BaseModel":
+            print("** class doesn't exist **")
+            return
+    def do_show(self, line, line1):
+>>>>>>> 9ca3536 (fix)
         """Prints the string representation of an instance based on the class name and id"""
         if not arg:
             print("** class name missing **")

@@ -8,8 +8,11 @@ All object will be passed to json format in a dictionary \
 """
 from os.path import exists
 from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.user import User
+from models.state import State
 from json import dump, dumps, load
-
 
 class FileStorage():
     """
@@ -22,6 +25,8 @@ class FileStorage():
 
     __file_path = 'file.json'
     __objects = {}
+
+    class_dict = { "BaseModel": BaseModel, "City": City, "State": State, "User": User, "Amenity": Amenity}
 
     def all(self):
         """
@@ -70,3 +75,13 @@ class FileStorage():
                         FileStorage.__objects[key] = eval(class_nam)(**value)
                     else:
                         pass
+        try:
+            with open(self.__file_path, 'r') as f:
+                new_obj = load(f)
+
+                for key, val in new_obj.items():
+                    new_obj = self.class_dict[val["__class__"]](**val)
+                    self.__objects[key] = new_obj
+
+        except FileNotFoundError:
+            pass

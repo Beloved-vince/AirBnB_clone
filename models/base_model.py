@@ -12,6 +12,14 @@ format_dt = "%Y-%m-%dT%H:%M:%S.%f"
 
 
 class BaseModel():
+    """
+    Methos:
+        __init__(self, *args, **kwargs)
+        __str__(self)
+        __save(self)
+        __repr__(self)
+        to_dict(self)
+    """
 
     def __init__(self, *args, **kwargs):
         """Args:
@@ -66,11 +74,11 @@ class BaseModel():
 
         dic = {}
         for key, value in self.__dict__.items():
-            if isinstance(value, (datetime, )):
+            dic[key] = value
+            if key in ["created_at", "updated_at"]:
                 dic['created_at'] = self.created_at.isoformat()
                 dic['updated_at'] = self.updated_at.isoformat()
-            else:
-                dic[key] = value
 
         dic['__class__'] = self.__class__.__name__
+
         return dic

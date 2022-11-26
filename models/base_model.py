@@ -66,11 +66,11 @@ class BaseModel():
 
         dic = {}
         for key, value in self.__dict__.items():
-            dic[key] = value
-            if key in ["created_at", "updated_at"]:
+            if isinstance(value, (datetime, )):
                 dic['created_at'] = self.created_at.isoformat()
                 dic['updated_at'] = self.updated_at.isoformat()
+            else:
+                dic[key] = value
 
         dic['__class__'] = self.__class__.__name__
-
         return dic

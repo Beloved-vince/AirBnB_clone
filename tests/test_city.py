@@ -1,9 +1,11 @@
+#!/usr/bin/python3
 import pep8
 import os
 import unittest
 from models.base_model import BaseModel
 from models.city import City
 base = BaseModel()
+
 
 class Test_User(unittest.TestCase):
     """User class test"""
@@ -13,13 +15,12 @@ class Test_User(unittest.TestCase):
         cls._user.name = "Betty"
         cls._user.state_id = "Vince"
 
-
     @classmethod
     def tearDownClass(cls):
         del cls._user
         try:
             os.remove("file.json")
-        except:
+        except FileNotFoundError:
             pass
 
     def test_pep8_user(self):
@@ -32,11 +33,11 @@ class Test_User(unittest.TestCase):
         """User class attributes test"""
         self.assertTrue("name" in City.__dict__)
         self.assertTrue("state_id" in City.__dict__)
-    
+
     def test_city_class(self):
-         """save user details"""
-         BaseModel.save(City)
-         self.assertNotEqual(base.created_at, BaseModel.save(City))
+        """save user details"""
+        BaseModel.save(City)
+        self.assertNotEqual(base.created_at, BaseModel.save(City))
 
     def test_city_type(self):
         """Test attribute data type"""
@@ -51,6 +52,7 @@ class Test_User(unittest.TestCase):
     def test_city_docs(self):
         """Documentation in the user class"""
         City.__doc__ is not None
-    
+
+
 if __name__ == "__main__":
     unittest.main()

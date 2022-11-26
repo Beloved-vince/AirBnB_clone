@@ -6,6 +6,7 @@ from models.base_model import BaseModel
 from models.place import Place
 base = BaseModel()
 
+
 class Test_place(unittest.TestCase):
     """Place class test"""
     @classmethod
@@ -23,14 +24,12 @@ class Test_place(unittest.TestCase):
         cls._place.longitude = 0.12
         cls._place.amenity_ids = ["121", 123]
 
-
-
     @classmethod
     def tearDownClass(cls):
         del cls._place
         try:
             os.remove("file.json")
-        except:
+        except FileNotFoundError:
             pass
 
     def test_pep8_place(self):
@@ -53,11 +52,10 @@ class Test_place(unittest.TestCase):
         self.assertTrue("longitude" in Place.__dict__)
         self.assertTrue("amenity_ids" in Place.__dict__)
 
-    
     def test_place_class(self):
-         """save Place details"""
-         BaseModel.save(Place)
-         self.assertNotEqual(base.created_at, BaseModel.save(Place))
+        """save Place details"""
+        BaseModel.save(Place)
+        self.assertNotEqual(base.created_at, BaseModel.save(Place))
 
     def test_place_type(self):
         """Test attribute data type"""
@@ -73,8 +71,6 @@ class Test_place(unittest.TestCase):
         self.assertTrue(type(Place.longitude), float)
         self.assertTrue(type(Place.amenity_ids), list)
 
-
-
     def test_instance(self):
         """test instance"""
         place = Place()
@@ -83,6 +79,7 @@ class Test_place(unittest.TestCase):
     def test_place_docs(self):
         """Documentation in the Place class"""
         Place.__doc__ is not None
-    
+
+
 if __name__ == "__main__":
     unittest.main()

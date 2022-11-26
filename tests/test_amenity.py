@@ -6,6 +6,7 @@ from models.base_model import BaseModel
 from models.amenity import Amenity
 base = BaseModel()
 
+
 class Test_amenity(unittest.TestCase):
     """User class test"""
     @classmethod
@@ -18,7 +19,7 @@ class Test_amenity(unittest.TestCase):
         del cls._amenity
         try:
             os.remove("file.json")
-        except:
+        except FileNotFoundError:
             pass
 
     def test_pep8_amenity(self):
@@ -30,11 +31,11 @@ class Test_amenity(unittest.TestCase):
     def test_Amenity(self):
         """User class attributes test"""
         self.assertTrue("name" in Amenity.__dict__)
-    
+
     def test_Amenity_class(self):
-         """save user details"""
-         BaseModel.save(Amenity)
-         self.assertNotEqual(base.created_at, BaseModel.save(Amenity))
+        """save user details"""
+        BaseModel.save(Amenity)
+        self.assertNotEqual(base.created_at, BaseModel.save(Amenity))
 
     def test_Amenity_type(self):
         """Test attribute data type"""
@@ -48,6 +49,7 @@ class Test_amenity(unittest.TestCase):
     def test_Amenity_docs(self):
         """Documentation in the user class"""
         Amenity.__doc__ is not None
-    
+
+
 if __name__ == "__main__":
     unittest.main()

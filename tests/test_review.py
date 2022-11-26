@@ -6,6 +6,7 @@ from models.base_model import BaseModel
 from models.review import Review
 base = BaseModel()
 
+
 class Test_review(unittest.TestCase):
     """User class test"""
     @classmethod
@@ -20,7 +21,7 @@ class Test_review(unittest.TestCase):
         del cls._review
         try:
             os.remove("file.json")
-        except:
+        except FileNotFoundError:
             pass
 
     def test_pep8_review(self):
@@ -35,11 +36,10 @@ class Test_review(unittest.TestCase):
         self.assertTrue("user_id" in Review.__dict__)
         self.assertTrue("text" in Review.__dict__)
 
-    
     def test_Review_class(self):
-         """save user details"""
-         BaseModel.save(Review)
-         self.assertNotEqual(base.created_at, BaseModel.save(Review))
+        """save user details"""
+        BaseModel.save(Review)
+        self.assertNotEqual(base.created_at, BaseModel.save(Review))
 
     def test_Review_type(self):
         """Test attribute data type"""
@@ -55,6 +55,7 @@ class Test_review(unittest.TestCase):
     def test_Review_docs(self):
         """Documentation in the user class"""
         Review.__doc__ is not None
-    
+
+
 if __name__ == "__main__":
     unittest.main()

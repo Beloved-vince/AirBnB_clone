@@ -5,6 +5,7 @@ from models.base_model import BaseModel
 from models.user import User
 base = BaseModel()
 
+
 class Test_User(unittest.TestCase):
     """User class test"""
     @classmethod
@@ -20,7 +21,7 @@ class Test_User(unittest.TestCase):
         del cls._user
         try:
             os.remove("file.json")
-        except:
+        except FileNotFoundError:
             pass
 
     def test_pep8_user(self):
@@ -35,11 +36,11 @@ class Test_User(unittest.TestCase):
         self.assertTrue("password" in User.__dict__)
         self.assertTrue("first_name" in User.__dict__)
         self.assertTrue("last_name" in User.__dict__)
-    
+
     def test_user_class(self):
-         """save user details"""
-         BaseModel.save(User)
-         self.assertNotEqual(base.created_at, BaseModel.save(User))
+        """save user details"""
+        BaseModel.save(User)
+        self.assertNotEqual(base.created_at, BaseModel.save(User))
 
     def test_user_type(self):
         """Test attribute data type"""
@@ -47,7 +48,6 @@ class Test_User(unittest.TestCase):
         self.assertTrue(type(User.last_name), str)
         self.assertTrue(type(User.password), str)
         self.assertTrue(type(User.email), str)
-
 
     def test_instance(self):
         """test instance"""
@@ -57,5 +57,7 @@ class Test_User(unittest.TestCase):
     def test_user_docs(self):
         """Documentation in the user class"""
         User.__doc__ is not None
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -6,6 +6,7 @@ from models.base_model import BaseModel
 from models.state import State
 base = BaseModel()
 
+
 class Test_state(unittest.TestCase):
     """User class test"""
     @classmethod
@@ -18,7 +19,7 @@ class Test_state(unittest.TestCase):
         del cls._state
         try:
             os.remove("file.json")
-        except:
+        except FileNotFoundError:
             pass
 
     def test_pep8_state(self):
@@ -30,11 +31,11 @@ class Test_state(unittest.TestCase):
     def test_state(self):
         """User class attributes test"""
         self.assertTrue("name" in State.__dict__)
-    
+
     def test_state_class(self):
-         """save user details"""
-         BaseModel.save(State)
-         self.assertNotEqual(base.created_at, BaseModel.save(State))
+        """save user details"""
+        BaseModel.save(State)
+        self.assertNotEqual(base.created_at, BaseModel.save(State))
 
     def test_state_type(self):
         """Test attribute data type"""
@@ -48,6 +49,7 @@ class Test_state(unittest.TestCase):
     def test_state_docs(self):
         """Documentation in the user class"""
         State.__doc__ is not None
-    
+
+
 if __name__ == "__main__":
     unittest.main()

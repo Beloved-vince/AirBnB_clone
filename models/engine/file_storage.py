@@ -22,6 +22,10 @@ class FileStorage():
                     The filestorage store object in json format
         __file_path: Path to json file
         __objects: Private attribute to store all object by <class name>.id
+        all: return all classes attr in dictionary
+        new: store key and value of __obj
+        save: save all class attribute into json file
+        reload: de-serialize back to object in dictionary python format
     """
 
     __file_path = 'file.json'

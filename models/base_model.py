@@ -17,7 +17,6 @@ class BaseModel():
         __init__(self, *args, **kwargs)
         __str__(self)
         __save(self)
-        __repr__(self)
         to_dict(self)
     """
 

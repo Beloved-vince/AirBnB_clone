@@ -26,7 +26,7 @@ class Test_amenity(unittest.TestCase):
         """Test for files  presents"""
         style = pep8.StyleGuide(quiet=True)
         p = style.check_files(['models.amenity.py'])
-        # self.assertEqual(p.total_errors, 0, 'fix pep8')
+        self.assertEqual(p.total_errors, 0, 'fix pep8')
 
     def test_Amenity(self):
         """User class attributes test"""

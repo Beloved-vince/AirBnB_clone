@@ -21,7 +21,7 @@ class Test_place(unittest.TestCase):
         cls._place.price_by_night = 0.0
         cls._place.latitude = 6.6
         cls._place.longitude = 0.12
-        cls._place.amenity_ids = ["121", "123"]
+        cls._place.amenity_ids = ["121", 123]
 
 
 

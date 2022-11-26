@@ -4,9 +4,9 @@ BaseModel class is created to generate a dictionary representation\
         of an instance
 On this class other classes will inherit from
 """
+import models
 from uuid import uuid4
 from datetime import datetime
-import models
 format_dt = "%Y-%m-%dT%H:%M:%S.%f"
 
 

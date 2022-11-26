@@ -10,6 +10,7 @@ On this class other classes will inherit from
 
 format_dt = "%Y-%m-%dT%H:%M:%S.%f"
 
+
 class BaseModel():
 
     def __init__(self, *args, **kwargs):
@@ -43,8 +44,10 @@ class BaseModel():
             updated_at:
                         date object is updated
         """
-
-        return ('[{}] ({}) {}'.format(self.__class__.__name__, self.id, self.__dict__))
+        class_name = self.__class__.__name__
+        uuid = self.id
+        class_dict = self.__dict__
+        return '[{}] ({}) {}'.format(class_name, uuid, class_dict)
 
     def save(self):
         """
@@ -66,7 +69,7 @@ class BaseModel():
             if key in ["created_at", "updated_at"]:
                 dic['created_at'] = self.created_at.isoformat()
                 dic['updated_at'] = self.updated_at.isoformat()
-                
+
         dic['__class__'] = self.__class__.__name__
 
         return dic

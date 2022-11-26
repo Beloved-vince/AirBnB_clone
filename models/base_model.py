@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-from uuid import uuid4
-from datetime import datetime
-import models
 """
 BaseModel class is created to generate a dictionary representation\
         of an instance
 On this class other classes will inherit from
 """
+
+from uuid import uuid4
+from datetime import datetime
+import models
 
 format_dt = "%Y-%m-%dT%H:%M:%S.%f"
 

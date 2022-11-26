@@ -29,9 +29,7 @@ class BaseModel():
                     setattr(self, key, item)
             self.id = str(uuid4())
             self.created_at = datetime.now()
-            self.my_number = int
             self.updated_at = datetime.now()
-            self.name = str
             models.storage.new(self)
 
     def __str__(self):

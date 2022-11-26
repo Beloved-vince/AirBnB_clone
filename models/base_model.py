@@ -50,12 +50,6 @@ class BaseModel():
         class_dict = self.__dict__
         return '[{}] ({}) {}'.format(class_name, uuid, class_dict)
 
-    def __repr__(self):
-        """
-        returns string representation
-        """
-        return (self.__str__())
-
     def save(self):
         """
         save update_at anytime this function is call

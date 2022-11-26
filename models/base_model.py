@@ -27,12 +27,18 @@ class BaseModel():
                 **kwargs: Constructor of BaseModel
         if **kwargs is not empty operation can be perform
         """
-        if kwargs is not None:
-            for key, item in kwargs.items():
-                if key in ['created_at', 'updated_at']:
-                    item = datetime.strptime(item, format_dt)
-                if key not in ['__class__']:
-                    setattr(self, key, item)
+        if kwargs:
+            for key, val in kwargs.items():
+                if "created_at" == key:
+                    self.created_at = datetime.strptime(kwargs["created_at"],
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
+                elif "updated_at" == key:
+                    self.updated_at = datetime.strptime(kwargs["updated_at"],
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
+                elif "__class__" == key:
+                    pass
+                else:
+                    setattr(self, key, val)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()

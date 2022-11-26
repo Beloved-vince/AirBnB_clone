@@ -14,6 +14,7 @@ from models.user import User
 from models.state import State
 from json import dump, dumps, load
 
+
 class FileStorage():
     """
     Args:
@@ -25,8 +26,8 @@ class FileStorage():
 
     __file_path = 'file.json'
     __objects = {}
-
-    class_dict = { "BaseModel": BaseModel, "City": City, "State": State, "User": User, "Amenity": Amenity}
+    class_dict = {"BaseModel": BaseModel, "City": City,
+                  "State": State, "User": User, "Amenity": Amenity}
 
     def all(self):
         """
@@ -59,7 +60,8 @@ class FileStorage():
         """
         Return the deserializes the JSON file to __objects \
                 (only if the JSON file (__file_path) exists ; \
-                otherwise, do nothing. If the file doesn’t exist, no exception should be raised)
+                otherwise, do nothing. If the file doesn’t exist,\
+                    no exception should be raised)
         """
         try:
             with open(self.__file_path, 'r') as f:

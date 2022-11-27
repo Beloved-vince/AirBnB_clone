@@ -21,7 +21,11 @@ from unittest.mock import patch
 
 
 class TestHBNBCommand_prompting(unittest.TestCase):
-    """Unittests for testing prompting of the HBNB command interpreter."""
+    """Unittests for testing prompting of the HBNB command interpreter.
+        Args:
+        test_prompt_string: docs
+        test_empty_line: check command
+    """
 
     def test_prompt_string(self):
         self.assertEqual("(hbnb) ", HBNBCommand.prompt)

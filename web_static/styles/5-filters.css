@@ -2,7 +2,6 @@
     height: 100%;
     width: 25%;
     float: left;
-    margin: 0;
 }
 
 /* .amenities{
@@ -29,6 +28,7 @@
     font-weight: 400;
     font-size: 14px;
     padding: 4.5px 0 12px 30px;
+    margin: 0;
 }
 
 .filters {
@@ -37,6 +37,7 @@
     border-radius: 4px;
     height: 70px;
     width: 100%;
+    margin: 0;
   }
 
   .filters button{
